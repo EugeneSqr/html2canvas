@@ -23,7 +23,7 @@ _html2canvas.Parse = function (images, options, cb) {
   init();
 
   function init() {
-    var background = getCSS(document.documentElement, "backgroundColor"),
+    var background = options.background || getCSS(document.documentElement, "backgroundColor"),
       transparentBackground = (Util.isTransparent(background) && element === document.body),
       stack = renderElement(element, null, false, transparentBackground);
 
