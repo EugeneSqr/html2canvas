@@ -1,6 +1,6 @@
 {
     "name": "html2canvas-explicitbg",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Screenshots with JavaScript",
     "main": "build/html2canvas.js",
     "ignore": [
