@@ -1,6 +1,6 @@
 /*
   html2canvas 0.4.1 <http://html2canvas.hertzen.com>
-  Copyright (c) 2015 Niklas von Hertzen
+  Copyright (c) 2017 Niklas von Hertzen
 
   Released under MIT License
 */
@@ -2963,6 +2963,11 @@ _html2canvas.Renderer.Canvas = function(options) {
     canvas.width = canvas.style.width =  options.width || zStack.ctx.width;
     canvas.height = canvas.style.height = options.height || zStack.ctx.height;
 
+    var textOffsetX = parseInt(options.textOffsetX) || 0;
+    var textOffsetY = parseInt(options.textOffsetY) || 0;
+
+    ctx.translate(-textOffsetX, -textOffsetY);
+
     fstyle = ctx.fillStyle;
     ctx.fillStyle = (Util.isTransparent(parsedData.backgroundColor) && options.background !== undefined) ? options.background : parsedData.backgroundColor;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -3003,8 +3008,8 @@ _html2canvas.Renderer.Canvas = function(options) {
         newCanvas.width = Math.ceil(bounds.width);
         newCanvas.height = Math.ceil(bounds.height);
         ctx = newCanvas.getContext("2d");
-
-		var imgData = canvas.getContext("2d").getImageData(bounds.left, bounds.top, bounds.width, bounds.height);
+ 
+        var imgData = canvas.getContext("2d").getImageData(bounds.left - textOffsetX, bounds.top - textOffsetY, bounds.width, bounds.height);
 		ctx.putImageData(imgData, 0, 0);
 
         canvas = null;
